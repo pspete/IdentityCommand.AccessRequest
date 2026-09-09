@@ -1,0 +1,115 @@
+---
+external help file: IdentityCommand.AccessRequest-help.xml
+Module Name: IdentityCommand.AccessRequest
+online version:
+schema: 2.0.0
+---
+
+# Deny-ARRequest
+
+## SYNOPSIS
+Rejects an open access request
+
+## SYNTAX
+
+```
+Deny-ARRequest [-requestId] <String> [[-finalizationReason] <String>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+## DESCRIPTION
+Rejects an open access request, returning the request with a `requestResult` of `REJECTED`.
+
+A request can only be handled by a user assigned as one of its approvers. Once one assigned approver has handled a request, no other assigned approver can handle it.
+
+Request identifiers come from `Get-ARRequest`, and pipe into this command.
+
+## EXAMPLES
+
+### Example 1
+```
+Deny-ARRequest -requestId 8a45155d-0273-4bc8-8d45-9fe3f4d4de6d -finalizationReason 'Raise a change record first'
+```
+
+Rejects the specified access request
+
+### Example 2
+```
+Get-ARRequest -requestState PENDING -requestRole APPROVER | Deny-ARRequest -finalizationReason 'Outside the approved change window'
+```
+
+Rejects every request awaiting your approval
+
+## PARAMETERS
+
+### -requestId
+The identifier of the access request to reject.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: id
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -finalizationReason
+The reason for rejecting the request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+
+## RELATED LINKS
