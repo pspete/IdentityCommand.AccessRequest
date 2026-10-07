@@ -10,7 +10,7 @@
     RootModule        = 'IdentityCommand.AccessRequest.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.0'
+    ModuleVersion     = '0.1.0'
 
     # ID used to uniquely identify this module
     GUID              = '83f93778-98fc-452e-9650-767c37e9e806'

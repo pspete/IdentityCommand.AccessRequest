@@ -1,12 +1,20 @@
-# Change Log
+---
+title: "IdentityCommand.AccessRequest Release 0.1"
+date: 2026-10-07 00:00:00
+version: 0.1.0
+tags:
+  - Release Notes
+  - Connect-ARTenant
+  - Get-ARRequest
+  - Get-ARRequestForm
+  - New-ARRequest
+  - Stop-ARRequest
+  - Approve-ARRequest
+  - Deny-ARRequest
+  - Get-ARModuleData
+---
 
-All notable changes to this project will be documented in this file.
-
-## Unreleased
-
-- N/A
-
-## [0.1.0] - 2026-10-07
+## [0.1.0]
 
 ### Added
 
@@ -23,4 +31,3 @@ All notable changes to this project will be documented in this file.
 - `Stop-ARRequest`: cancel an open access request.
 - `Approve-ARRequest`, `Deny-ARRequest`: finalize a request assigned to you as an approver.
 - `Get-ARModuleData`: get the module version and session configuration data.
-
