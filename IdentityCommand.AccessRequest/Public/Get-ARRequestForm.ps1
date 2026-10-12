@@ -21,7 +21,7 @@ function Get-ARRequestForm {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/workflows/request-forms"
+        $URI = "$(Resolve-RequestUrl)/api/workflows/request-forms"
 
         $URI = Add-QueryString -URI $URI -Parameter ($PSBoundParameters | Get-Parameter)
 

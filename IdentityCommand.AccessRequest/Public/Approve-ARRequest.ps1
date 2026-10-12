@@ -22,7 +22,7 @@ function Approve-ARRequest {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/workflows/requests/$requestId/finalize"
+        $URI = "$(Resolve-RequestUrl)/api/workflows/requests/$requestId/finalize"
 
         $boundParameters = $PSBoundParameters | Get-Parameter -ParametersToRemove requestId
         $boundParameters['result'] = 'APPROVED'
