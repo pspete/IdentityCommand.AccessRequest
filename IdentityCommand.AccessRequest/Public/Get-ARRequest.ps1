@@ -137,14 +137,14 @@ function Get-ARRequest {
 
         if ($PSCmdlet.ParameterSetName -eq 'byId') {
 
-            $URI = "$($ISPSSSession.tenant_url)/api/workflows/requests/$requestId"
+            $URI = "$(Resolve-RequestUrl)/api/workflows/requests/$requestId"
 
             #Send Request
             Invoke-IDRestMethod -Uri $URI -Method GET
 
         } else {
 
-            $URI = "$($ISPSSSession.tenant_url)/api/workflows/requests"
+            $URI = "$(Resolve-RequestUrl)/api/workflows/requests"
 
             $boundParameters = $PSBoundParameters | Get-Parameter -ParametersToRemove requestState, requestResult, createdBy, updatedBy, createdAfter, createdBefore
 

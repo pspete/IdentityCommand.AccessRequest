@@ -22,7 +22,7 @@ function Stop-ARRequest {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/workflows/requests/$requestId/cancel"
+        $URI = "$(Resolve-RequestUrl)/api/workflows/requests/$requestId/cancel"
 
         $body = $PSBoundParameters | Get-Parameter -ParametersToRemove requestId | ConvertTo-Json -Depth 8
 
