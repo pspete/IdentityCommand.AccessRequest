@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 ### Removed
 
 - `Connect-ARTenant`. Authenticate with `New-IDSession` or `New-IDPlatformToken` from `IdentityCommand` instead.
+- `-offset` from `Get-ARRequest`. Every page is retrieved automatically, and a starting offset returned duplicated and missing items.
 
 ## [0.1.0] - 2026-10-07
 

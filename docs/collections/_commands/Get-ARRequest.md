@@ -14,7 +14,7 @@ Gets access requests
 
 ### byQuery (Default)
 ```
-Get-ARRequest [-filter <String>] [-freeText <String>] [-limit <Int32>] [-offset <Int32>]
+Get-ARRequest [-filter <String>] [-freeText <String>] [-limit <Int32>]
  [-requestRole <String>] [-sort <String>] [<CommonParameters>]
 ```
 
@@ -22,7 +22,7 @@ Get-ARRequest [-filter <String>] [-freeText <String>] [-limit <Int32>] [-offset 
 ```
 Get-ARRequest [-requestState <String>] [-requestResult <String>] [-createdBy <String>]
  [-updatedBy <String>] [-createdAfter <DateTime>] [-createdBefore <DateTime>] [-freeText <String>]
- [-limit <Int32>] [-offset <Int32>] [-requestRole <String>] [-sort <String>] [<CommonParameters>]
+ [-limit <Int32>] [-requestRole <String>] [-sort <String>] [<CommonParameters>]
 ```
 
 ### byId
@@ -228,21 +228,6 @@ Accept wildcard characters: False
 
 ### -limit
 The maximum number of requests to return per request, up to 1000. The service returns 50 when not specified.
-
-```yaml
-Type: Int32
-Parameter Sets: byQuery, byFilterCriteria
-Aliases: 
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -offset
-The number of requests to skip before returning results.
 
 ```yaml
 Type: Int32

@@ -101,19 +101,6 @@ function Get-ARRequest {
             ValueFromPipelinebyPropertyName = $true,
             ParameterSetName = 'byFilterCriteria'
         )]
-        [ValidateRange(0, 10000)]
-        [int]$offset,
-
-        [parameter(
-            Mandatory = $false,
-            ValueFromPipelinebyPropertyName = $true,
-            ParameterSetName = 'byQuery'
-        )]
-        [parameter(
-            Mandatory = $false,
-            ValueFromPipelinebyPropertyName = $true,
-            ParameterSetName = 'byFilterCriteria'
-        )]
         [ValidateSet('CREATOR', 'APPROVER')]
         [String]$requestRole,
 
