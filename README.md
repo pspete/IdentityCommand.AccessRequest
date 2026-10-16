@@ -1,3 +1,7 @@
+![Logo][Logo]
+
+[Logo]: /docs/media/images/IdentityCommand.AccessRequest.png
+
 # IdentityCommand.AccessRequest
 
 **IdentityCommand.AccessRequest** is a PowerShell module that provides a set of easy-to-use commands, allowing you to interact with the **CyberArk Access Request API** from within the PowerShell environment.
@@ -26,28 +30,19 @@ The `IdentityCommand` module must be installed and available in order to use `Id
 
 ### Access Requests Authentication
 
-The `Connect-ARTenant` command initialises the bearer token used for module operations against the Access Requests service.
-
-If an Identity session already exists (established with the `IdentityCommand` module's `New-IDSession` or `New-IDPlatformToken`), it is used as-is:
+Authenticate with the `IdentityCommand` module, using `New-IDSession` (interactive user, including any MFA challenges) or `New-IDPlatformToken` (non-interactive service user). Commands find the Access Requests service url from the Identity session on first use - no separate connection step is needed:
 
 ```powershell
-# Resolve the Access Requests url automatically from the shared services subdomain
-Connect-ARTenant -tenant_subdomain sometenant
+# Interactive user authentication
+New-IDSession -tenant_url https://abc1234.id.cyberark.cloud -Credential $Credential
 
-# Or provide the Access Requests tenant url directly
-Connect-ARTenant -tenant_url https://sometenant.uar.cyberark.cloud
+# Or non-interactive service user authentication via an OAuth platform token
+New-IDPlatformToken -tenant_url https://abc1234.id.cyberark.cloud -Credential $ServiceUserCredential
+
+Get-ARRequest
 ```
 
-Otherwise, provide a credential and `Connect-ARTenant` authenticates to CyberArk Identity for you - the Identity tenant url is discovered from the same subdomain / url:
-
-```powershell
-# Interactive user authentication (any MFA challenges are handled by IdentityCommand)
-Connect-ARTenant -tenant_subdomain sometenant -Credential $Credential
-
-# Non-interactive service user authentication via an OAuth platform token
-Connect-ARTenant -tenant_subdomain sometenant -Credential $ServiceUserCredential -PlatformToken
-```
-
+Commands follow the current Identity session: a later `New-IDSession` or `New-IDPlatformToken` is used by the next command, and after `Close-IDSession` commands fail until you authenticate again.
 ### Access Requests
 
 `Get-ARRequest` returns the requests you can see - those you raised, and those assigned to you as an approver. Narrow by role, or by any of the filter criteria:
@@ -114,7 +109,6 @@ Get-ARRequest -requestState PENDING -requestRole APPROVER | Deny-ARRequest -fina
 
 | Command              | Description                                         |
 | -------------------- | --------------------------------------------------- |
-| `Connect-ARTenant`   | Authenticate to the Access Requests service         |
 | `Get-ARRequest`      | Get access requests                                 |
 | `Get-ARRequestForm`  | Get the structure of an access request form         |
 | `New-ARRequest`      | Create an access request                            |
@@ -216,7 +210,7 @@ Get detailed information on specific commands:
 
 ```powershell
 
-Get-Help Connect-ARTenant -Full
+Get-Help Get-ARRequest -Full
 
 ```
 

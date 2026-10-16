@@ -28,7 +28,7 @@ function New-ARRequest {
 
     process {
 
-        $URI = "$($ISPSSSession.tenant_url)/api/workflows/requests"
+        $URI = "$(Resolve-RequestUrl)/api/workflows/requests"
 
         $body = $PSBoundParameters | Get-Parameter | ConvertTo-Json -Depth 8
 

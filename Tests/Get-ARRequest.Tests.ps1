@@ -158,4 +158,49 @@ Describe 'Get-ARRequest' {
         }
     }
 
+    Context 'Without a module session' {
+
+        BeforeEach {
+
+            InModuleScope -ModuleName $Script:ARModuleName {
+                $ISPSSSession = [ordered]@{
+                    tenant_url = $null
+                    Subdomain  = $null
+                    StartTime  = $null
+                    WebSession = $null
+                }
+                New-Variable -Name ISPSSSession -Value $ISPSSSession -Scope Script -Force
+            }
+
+            Mock -CommandName Get-IDSession -ModuleName $Script:ARModuleName -MockWith {
+                [ordered]@{
+                    tenant_url = 'https://sometenant.id.cyberark.cloud'
+                    Subdomain  = 'sometenant'
+                    StartTime  = Get-Date '2026-01-01T09:00:00'
+                    WebSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+                }
+            }
+
+            Mock -CommandName Resolve-ServiceUrl -ModuleName $Script:ARModuleName -MockWith {
+                [pscustomobject]@{ ServiceUrl = "https://$Subdomain.$Service.cyberark.cloud" }
+            }
+
+        }
+
+        It 'resolves the service URL from the IdentityCommand session' {
+            $null = Get-ARRequest
+            Should -Invoke -CommandName Resolve-ServiceUrl -ModuleName $Script:ARModuleName -ParameterFilter {
+                $Service -eq 'ars' -and $Subdomain -eq 'sometenant'
+            } -Times 1 -Exactly -Scope It
+        }
+
+        It 'sends request to the resolved service URL' {
+            $null = Get-ARRequest
+            Should -Invoke -CommandName Invoke-IDRestMethod -ModuleName $Script:ARModuleName -ParameterFilter {
+                $URI -eq 'https://sometenant.ars.cyberark.cloud/api/workflows/requests'
+            } -Times 1 -Exactly -Scope It
+        }
+
+    }
+
 }
