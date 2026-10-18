@@ -19,7 +19,7 @@
 [codefactor]: https://www.codefactor.io/repository/github/pspete/IdentityCommand.AccessRequest/badge
 [codecov]: https://codecov.io/gh/pspete/IdentityCommand.AccessRequest/branch/main/graph/badge.svg
 [codecov-link]: https://codecov.io/gh/pspete/IdentityCommand.AccessRequest
-[license]: https://img.shields.io/github/license/pspete/IdentityCommand.AccessRequest.svg
+[license]: https://img.shields.io/badge/license-MIT-green.svg
 [license-link]: https://github.com/pspete/IdentityCommand.AccessRequest/blob/main/LICENSE
 
 ## Using the Module
